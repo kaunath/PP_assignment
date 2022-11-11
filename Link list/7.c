@@ -1,5 +1,8 @@
 /*
-Take N numbers as input from the user and create a doubly linked list
+7.Take N numbers as input from the user and create a doubly linked list
+8. Find the smallest number in the doubly linked list.
+9. Delete the smallest number in the doubly linked list.
+
 */
 
 

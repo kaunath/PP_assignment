@@ -1,0 +1,101 @@
+#include<stdio.h>
+
+int parent[1000];
+int rank[1000];
+	// int rep[10];
+
+void makeset(int n)
+{
+	parent[n] = n;
+	rank[n] = 0;
+}
+
+int find(int x)
+{
+	if(x != parent[x]){
+		return parent[x] = find(parent[x]);
+	}
+	else{
+		return parent[x];
+	}
+}
+
+void Union(int u, int v)
+{
+	u = find(u);
+	v = find(v);
+
+	if(rank[u] < rank[v]){
+		parent[u] = v;
+	}
+	else if(rank[u] > rank[v]){
+		parent[v] = u;
+	}
+	else{
+		parent[v] = u;
+		rank[u]++ ;
+	}
+}
+
+int main()
+{
+	
+	int k;
+	scanf("%d",&k);
+	while(k !=0)
+	{
+	k--;
+	int n;
+	scanf("%d",&n);
+
+	int matrix[n][n];
+	int i,j;
+
+	for(i = 1; i<= n; i++){  
+		for(j = 1; j <= n; j++){
+			scanf("%d", &matrix[i][j]);
+			}
+		}
+
+	for(i = 1; i <= n; i++){
+		makeset(i);
+		}
+
+	int u ,v;
+
+	for(i = 1; i <= n; i++){
+		for(j = 1; j<= n; j++){
+			if(matrix[i][j] == 1){
+				Union(i,j);
+				}
+			}
+		}
+	int count = 0,z=0;
+	int rep[n];
+	for(i = 1; i <= n; i++){
+		if(find(i) == i){
+			count++ ;
+			rep[z] = i;
+			z++ ;
+		}
+	}
+		// printf("count is %d\n",count);
+
+	printf("%d\n", count);
+	for(i=0;i<count;i++){
+		printf("z is %d\n",z);
+		
+		printf("%d ",rep[i]);
+
+	}
+	printf("kis %d\n",k);
+
+	printf("\n");
+	// printf("after");
+
+
+}
+	
+	return 0;
+}
+	
