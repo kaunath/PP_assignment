@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  *15. Remove in a linked list all the nodes that have a greater value to their right.
 Input:
@@ -38,10 +39,62 @@ struct node* create_list(int elem, struct node* head) {
 }
 
 
+=======
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct node {
+	int data;
+	struct node *next;
+};
+
+struct node* create_list(int elem, struct node *head) {	
+	struct node *temp = NULL;
+	struct node *temp_1 = NULL;
+	for (int i = 0; i < elem; i++) {
+		temp = (struct node*) malloc(sizeof(struct node));
+		scanf("%d", &(temp->data));
+		if(head == NULL) {
+			head = temp;
+			temp_1 = temp;
+			head -> next = NULL;
+
+		} else { 
+			temp_1 -> next = temp;
+			temp_1 = temp;
+			temp -> next = NULL;
+		}
+	}
+
+	return head;
+}
+struct node* delete_max_to_right(struct node* head) 
+{
+	struct node *temp = head;
+	struct node* ptr = head;
+	struct node* link = temp -> next;
+
+	while(link != NULL) {
+		if(temp -> data < link -> data) {
+			temp -> data = link -> data;
+		       temp -> next = link -> next;
+	       		link -> next = NULL;
+		 	link = temp -> next;	
+		} else {
+		link = link -> next;
+		temp = temp -> next;
+		//ptr = ptr->next;
+		}
+	}
+	return head;
+}
+>>>>>>> be9a0e83a4839d57944906febc9bbdbb8f96066d
 
 void print_list(struct node *head)
 
 {
+<<<<<<< HEAD
         struct node *temp;
         temp = head;
 
@@ -99,10 +152,22 @@ struct node* remove_greater_node(struct node* head) {
 		}
 	
 	return head;
+=======
+	struct node *temp;
+	temp = head;
+
+	while (temp != NULL) {
+	printf("%d ->", temp -> data);
+	temp = temp->next;
+
+	}
+	printf("NULL\n ");
+>>>>>>> be9a0e83a4839d57944906febc9bbdbb8f96066d
 }
 int main()
 {
 	struct node* head = NULL;
+<<<<<<< HEAD
 	struct node* arr[3];
 	for(int i = 0; i < 1; i++) {
 		arr[i] = create_list(8,head);
@@ -118,4 +183,10 @@ int main()
 		print_list(arr[i]);
 				
 	}	
+=======
+	head = create_list(8, head);
+	print_list(head);
+	head = delete_max_to_right(head);
+	print_list(head);
+>>>>>>> be9a0e83a4839d57944906febc9bbdbb8f96066d
 }
